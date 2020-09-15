@@ -2,15 +2,24 @@ package com.android.github.souravbera.e_commerce;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.github.souravbera.e_commerce.Model.Products;
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
+import com.android.github.souravbera.e_commerce.ViewHolder.ProductViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -28,7 +37,10 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
+
+
+    private DatabaseReference ProductsRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +78,49 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //setting Username
         userNameTextView.setText(Prevalent.currentOnlineUser.getName());
 
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Products> options=
+                new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(ProductsRef, Products.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter=
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull Products model) {
+                        holder.txtProductName.setText(model.getProductname());
+                        holder.txtProductName.setText(model.getDescription());
+                        holder.txtProductName.setText("Price = Rs."+model.getPrice());
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent= new Intent(HomeActivity.this, ProductsDetailsActivity.class);
+                                intent.putExtra("pid",model.getPid());
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+                    {
+                     View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.products_items_layout ,parent , false);
+                     ProductViewHolder holder= new ProductViewHolder(view);
+                     return holder;
+
+                    }
+                };
     }
 
     @Override
@@ -74,12 +130,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -97,7 +147,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
         else if(id==R.id.nav_settings){
-
+            Intent intent= new Intent(HomeActivity.this, ActivitySettings.class);
+            startActivity(intent);
         }
         else if(id==R.id.nav_logout)
         {
