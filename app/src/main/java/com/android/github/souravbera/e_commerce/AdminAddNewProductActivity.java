@@ -87,19 +87,19 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         {
             Intent galleryIntent= new Intent();
             galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-            galleryIntent.setType("image/");
+            galleryIntent.setType("image/*");
             startActivityForResult(galleryIntent, GalleryPic);
 
 
         }
 
 
-
+//Intent requestcode
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode== GalleryPic && resultCode== RESULT_OK && data!= null)
+        if(requestCode==GalleryPic && resultCode== RESULT_OK && data!= null)
         {
             ImageUri= data.getData();
             InputProductImage.setImageURI(ImageUri);
@@ -137,13 +137,13 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
     private void storeProductInformation()
     {
-        Calendar claendar= Calendar.getInstance();
+        Calendar calendar= Calendar.getInstance();
 
         SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
-        saveCurrentDate = currentDate.format(claendar.getTime());
+        saveCurrentDate = currentDate.format(calendar.getTime());
 
         SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentDate = currentTime.format(claendar.getTime());
+        saveCurrentDate = currentTime.format(calendar.getTime());
 
         productRandomKey= saveCurrentDate+ saveCurrentTime;
 
