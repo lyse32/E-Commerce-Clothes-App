@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivitySettings"></activity>
+        <activity android:name=".ProductsDetailsActivity"></activity>
+        <activity android:name=".CartActivity"></activity>
 
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/> <!-- optional (needed if default theme has no action bar) -->
