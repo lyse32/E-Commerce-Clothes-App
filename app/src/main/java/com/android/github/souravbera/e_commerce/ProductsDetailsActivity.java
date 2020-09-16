@@ -59,7 +59,15 @@ public class ProductsDetailsActivity extends AppCompatActivity {
         AddToCartbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addingToCartList();
+
+
+                if(state.equals("Order Placed")||  state.equals("Order Shipped"))
+                {
+                    Toast.makeText(ProductsDetailsActivity.this, "You can add purchase more products , once your order is shipped or confirmed",Toast.LENGTH_SHORT ).show();
+                }
+                else{
+                    addingToCartList();
+                }
             }
         });
     }
