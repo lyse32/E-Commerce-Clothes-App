@@ -2,6 +2,7 @@ package com.android.github.souravbera.e_commerce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
     private ImageView glasses, hatsCaps, walletBagsPurses, shoes;
     private ImageView headphonesHandFree, laptops, watches, mobiles;
 
-    private Button logoutBtn, CheckOrdersBtn;
+    private Button logoutBtn, CheckOrdersBtn, MaintainProductsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class AdminCategoryActivity extends AppCompatActivity {
 
         logoutBtn= findViewById(R.id.admin_logout_btn);
         CheckOrdersBtn= findViewById(R.id.check_orders_btn);
+        MaintainProductsBtn= findViewById(R.id.admin_maintain_products);
+
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +52,16 @@ public class AdminCategoryActivity extends AppCompatActivity {
             }
         });
 
+
+        MaintainProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(AdminCategoryActivity.this, HomeActivity.class);
+                intent.putExtra("Admin", "Admin");
+                startActivity(intent);
+                finish();
+            }
+        });
 
         CheckOrdersBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(parentDbName.equals("Admins")) {
                                 Toast.makeText(LoginActivity.this, "Welcome Admin, you have logged in successfully", Toast.LENGTH_SHORT).show();
 
-                                Intent HomeIntent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                                Intent HomeIntent = new Intent(LoginActivity.this, com.android.github.souravbera.e_commerce.AdminCategoryActivity.class);
                                 startActivity(HomeIntent);
                                 loadingBar.dismiss();
                             }

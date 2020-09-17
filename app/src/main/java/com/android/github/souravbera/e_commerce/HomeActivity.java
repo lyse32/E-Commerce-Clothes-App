@@ -7,8 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.github.souravbera.e_commerce.AdminMaintainProductsActivity;
 import com.android.github.souravbera.e_commerce.Model.Products;
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
 import com.android.github.souravbera.e_commerce.ViewHolder.ProductViewHolder;
@@ -31,6 +33,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -40,6 +44,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private DatabaseReference ProductsRef;
+    private String type= "";
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
 
     @Override
@@ -52,14 +59,27 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
+        Intent intent= getIntent();
+        Bundle  bundle= intent.getExtras();
+        if(bundle != null)
+        {
+            type = getIntent().getExtras().get("Admin").toString();
+        }
+
+
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(intent);
+                if(!type.equals("Admin"))
+                {
+                    Intent intent= new Intent(HomeActivity.this, CartActivity.class);
+                    startActivity(intent);
+
+                }
+
             }
         });
 
@@ -80,6 +100,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager= new LinearLayoutManager(this);
+
     }
 
     @Override
@@ -96,17 +120,29 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
+
                         holder.txtProductName.setText(model.getProductname());
                         holder.txtProductName.setText(model.getDescription());
                         holder.txtProductName.setText("Price = Rs."+model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
+
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent= new Intent(HomeActivity.this, ProductsDetailsActivity.class);
-                                intent.putExtra("pid",model.getPid());
-                                startActivity(intent);
+                                if(type.equals("Admin"))
+                                {
+                                    Intent intent= new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
+                                    intent.putExtra("Pid", model.getPid());
+                                    startActivity(intent);
+
+                                }
+                                else
+                                {
+                                        Intent intent= new Intent(HomeActivity.this, ProductsDetailsActivity.class);
+                                        intent.putExtra("pid", model.getPid());
+                                        startActivity(intent);
+                                }
                             }
                         });
                     }
@@ -139,7 +175,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(id==R.id.nav_cart){
 
         }
-        else if(id==R.id.nav_orders){
+        else if(id==R.id.nav_search){
+            if(!type.equals("Admin"))
+            {
+                Intent intent= new Intent(HomeActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+
+            }
+
 
         }
         else if(id==R.id.nav_categories){
@@ -147,8 +190,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
         else if(id==R.id.nav_settings){
-            Intent intent= new Intent(HomeActivity.this, ActivitySettings.class);
-            startActivity(intent);
+            if(!type.equals("Admin"))
+            {
+                Intent intent= new Intent(HomeActivity.this, ActivitySettings.class);
+                startActivity(intent);
+
+            }
+
         }
         else if(id==R.id.nav_logout)
         {

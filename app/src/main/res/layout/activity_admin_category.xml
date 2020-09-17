@@ -132,7 +132,7 @@
     <Button
         android:id="@+id/check_orders_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="20dp"
         android:background="@color/colorPrimaryDark"
@@ -140,12 +140,26 @@
         android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="110dp"
+        />
+    <Button
+        android:id="@+id/admin_maintain_products"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Maintain Products"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_above="@id/check_orders_btn"
+        android:layout_marginBottom="60dp"
         />
     <Button
         android:id="@+id/admin_logout_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="20dp"
         android:background="@color/colorPrimaryDark"
@@ -153,7 +167,7 @@
         android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_above="@id/check_orders_btn"
+        android:layout_above="@id/admin_maintain_products"
         android:layout_marginVertical="10dp"
         />
 
