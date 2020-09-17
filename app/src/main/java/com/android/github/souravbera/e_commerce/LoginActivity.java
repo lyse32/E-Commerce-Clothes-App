@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private String parentDbName= "Users";
 
     private CheckBox chkBoxRememberMe;
-    private TextView AdminLink, NotAdminLink;
+    private TextView AdminLink, NotAdminLink, ForgotPasswordLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         AdminLink= findViewById(R.id.login_admin_login);
         NotAdminLink= findViewById(R.id.login_not_admin_login);
-
+        ForgotPasswordLink= findViewById(R.id.forgot_password_link);
 
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +81,13 @@ public class LoginActivity extends AppCompatActivity {
                 AdminLink.setVisibility(View.VISIBLE);
                 NotAdminLink.setVisibility(View.INVISIBLE);
                 parentDbName= "Users";
+            }
+        });
+
+        ForgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
