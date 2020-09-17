@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.security.Security;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -40,6 +42,7 @@ public class ActivitySettings extends AppCompatActivity {
     private CircleImageView profileImageView;
     private EditText fullNameEdittxt, userPhoneEdittxt, addressEdittxt;
     private TextView profileChangeTextBtn, closeTextBtn, saveTextbtn;
+    private Button SecurityQuestionBtn;
 
     private Uri imageUri;
     private String myUrl= "";
@@ -58,6 +61,7 @@ public class ActivitySettings extends AppCompatActivity {
         profileChangeTextBtn= findViewById(R.id.profile_image_change_btn);
         closeTextBtn= findViewById(R.id.close_setting_btn);
         saveTextbtn= findViewById(R.id.update_account_settings);
+        SecurityQuestionBtn= findViewById(R.id.security_question_btn);
 
         userInfoDisplay(profileImageView, fullNameEdittxt, userPhoneEdittxt, addressEdittxt);
 
@@ -91,6 +95,15 @@ public class ActivitySettings extends AppCompatActivity {
                 CropImage.activity(imageUri)
                         .setAspectRatio(1, 1)
                         .start(ActivitySettings.this);
+            }
+        });
+
+        SecurityQuestionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(ActivitySettings.this, ResetPasswordActivity.class);
+                intent.putExtra("check","settings");
+                startActivity(intent);
             }
         });
     }
