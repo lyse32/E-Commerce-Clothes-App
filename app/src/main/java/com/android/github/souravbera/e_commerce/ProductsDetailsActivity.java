@@ -49,11 +49,11 @@ public class ProductsDetailsActivity extends AppCompatActivity {
         
 //        addToCart= findViewById(R.id.add_product_to_cart_btn);
         numberButton= findViewById(R.id.number_btn);
-        productImage= findViewById(R.id.product_image);
-        productDescription= findViewById(R.id.product_description);
-        productPrice= findViewById(R.id.product_price);
-        productName= findViewById(R.id.product_name);
-        AddToCartbtn= findViewById(R.id.pd_add_to_cart);
+        productImage= findViewById(R.id.product_image_details);
+        productDescription= findViewById(R.id.product_description_details);
+        productPrice= findViewById(R.id.product_price_details);
+        productName= findViewById(R.id.product_name_details);
+        AddToCartbtn= findViewById(R.id.prod_add_to_cart);
         
         getProductDetails(productId);
 
@@ -137,9 +137,10 @@ public class ProductsDetailsActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     Products products= dataSnapshot.getValue(Products.class);
 
+
                     productName.setText(products.getProductname());
-                    productName.setText(products.getDescription());
-                    productName.setText(products.getPrice());
+                    productDescription.setText(products.getDescription());
+                    productPrice.setText(products.getPrice());
 //                    productName.setText(products.getProductname());
                     Picasso.get().load(products.getImage()).placeholder(R.drawable.profile).into(productImage);
 
