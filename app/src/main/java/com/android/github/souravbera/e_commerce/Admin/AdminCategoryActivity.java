@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.android.github.souravbera.e_commerce.AdminNewOrdersActivity;
+import com.android.github.souravbera.e_commerce.Admin.AdminNewOrdersActivity;
 import com.android.github.souravbera.e_commerce.HomeActivity;
 import com.android.github.souravbera.e_commerce.MainActivity;
 import com.android.github.souravbera.e_commerce.R;

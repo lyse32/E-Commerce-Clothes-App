@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.github.souravbera.e_commerce.Admin.AdminCategoryActivity;
 import com.android.github.souravbera.e_commerce.Model.Users;
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
@@ -144,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(parentDbName.equals("Admins")) {
                                 Toast.makeText(LoginActivity.this, "Welcome Admin, you have logged in successfully", Toast.LENGTH_SHORT).show();
 
-                                Intent HomeIntent = new Intent(LoginActivity.this, com.android.github.souravbera.e_commerce.AdminCategoryActivity.class);
+                                Intent HomeIntent = new Intent(LoginActivity.this, com.android.github.souravbera.e_commerce.Admin.AdminCategoryActivity.class);
                                 startActivity(HomeIntent);
                                 loadingBar.dismiss();
                             }

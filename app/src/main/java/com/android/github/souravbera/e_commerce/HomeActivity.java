@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.github.souravbera.e_commerce.AdminMaintainProductsActivity;
+import com.android.github.souravbera.e_commerce.Admin.AdminMaintainProductsActivity;
+import com.android.github.souravbera.e_commerce.Admin.AdminMaintainProductsActivity;
 import com.android.github.souravbera.e_commerce.Model.Products;
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
 import com.android.github.souravbera.e_commerce.ViewHolder.ProductViewHolder;
