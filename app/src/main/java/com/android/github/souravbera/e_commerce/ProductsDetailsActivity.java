@@ -52,6 +52,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
         productImage= findViewById(R.id.product_image);
         productDescription= findViewById(R.id.product_description);
         productPrice= findViewById(R.id.product_price);
+        productName= findViewById(R.id.product_name);
         AddToCartbtn= findViewById(R.id.pd_add_to_cart);
         
         getProductDetails(productId);
@@ -140,7 +141,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
                     productName.setText(products.getDescription());
                     productName.setText(products.getPrice());
 //                    productName.setText(products.getProductname());
-                    Picasso.get().load(products.getImage()).into(productImage);
+                    Picasso.get().load(products.getImage()).placeholder(R.drawable.profile).into(productImage);
 
                 }
             }

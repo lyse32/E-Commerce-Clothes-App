@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private DatabaseReference ProductsRef;
     private String type= "";
-    private RecyclerView recyclerView;
+    private RecyclerView ProductsList;
     RecyclerView.LayoutManager layoutManager;
 
 
@@ -101,9 +101,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
-        recyclerView = findViewById(R.id.recycler_menu);
-        recyclerView.setHasFixedSize(true);
+        ProductsList = findViewById(R.id.recycler_menu);
+        ProductsList.setHasFixedSize(true);
         layoutManager= new LinearLayoutManager(this);
+        ProductsList.setLayoutManager(layoutManager);
 
     }
 
@@ -123,9 +124,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model) {
 
                         holder.txtProductName.setText(model.getProductname());
-                        holder.txtProductName.setText(model.getDescription());
-                        holder.txtProductName.setText(String.format("Price = Rs.%s", model.getPrice()));
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
+                        holder.txtProductDescription.setText(model.getDescription());
+                        holder.txtProductPrice.setText(String.format("Price = Rs.%s", model.getPrice()));
+                        Picasso.get().load(model.getImage()).placeholder(R.drawable.profile).into(holder.imageView);
 
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +159,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     }
                 };
+        ProductsList.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
