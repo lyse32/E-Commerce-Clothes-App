@@ -36,7 +36,7 @@
                     android:id="@+id/update_account_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Close"
+                    android:text="Update"
                     android:textColor="@android:color/white"
                     android:textSize="17sp"
                     android:layout_alignParentEnd="true"
