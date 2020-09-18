@@ -97,9 +97,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView userNameTextView= headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView= headerView.findViewById(R.id.user_profile_image);
         //setting Username
-        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
+        if(!type.equals("Admin"))
+        {
+            userNameTextView.setText(Prevalent.currentOnlineUser.getName());
 
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+            Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        }
+
 
         ProductsList = findViewById(R.id.recycler_menu);
         ProductsList.setHasFixedSize(true);
