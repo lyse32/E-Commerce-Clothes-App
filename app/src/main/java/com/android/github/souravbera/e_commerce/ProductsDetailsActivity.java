@@ -94,8 +94,8 @@ public class ProductsDetailsActivity extends AppCompatActivity {
 
         final HashMap<String , Object> cartMap= new HashMap<>();
         cartMap.put("pid",productId);
-        cartMap.put("productname",productName);
-        cartMap.put("price",productPrice);
+        cartMap.put("productname",productName.getText().toString());
+        cartMap.put("price",productPrice.getText().toString());
         cartMap.put("date",saveCurrentDate);
         cartMap.put("time",saveCurrentTime);
         cartMap.put("quantity",numberButton.getNumber());
@@ -138,10 +138,10 @@ public class ProductsDetailsActivity extends AppCompatActivity {
                     Products products= dataSnapshot.getValue(Products.class);
 
 
-                    productName.setText(products.getProductname());
+//                    productName.setText(products.getProductname());
                     productDescription.setText(products.getDescription());
                     productPrice.setText(products.getPrice());
-//                    productName.setText(products.getProductname());
+                    productName.setText(products.getProductname());
                     Picasso.get().load(products.getImage()).placeholder(R.drawable.profile).into(productImage);
 
                 }
