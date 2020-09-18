@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             type = getIntent().getExtras().get("Admin").toString();
         }
 
-
+        //initialisation
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                         holder.txtProductName.setText(model.getProductname());
                         holder.txtProductName.setText(model.getDescription());
-                        holder.txtProductName.setText("Price = Rs."+model.getPrice());
+                        holder.txtProductName.setText(String.format("Price = Rs.%s", model.getPrice()));
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
 
@@ -174,7 +174,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id= item.getItemId();
 
         if(id==R.id.nav_cart){
+            if(!type.equals("Admin"))
+            {
+                Intent intent= new Intent(HomeActivity.this, CartActivity.class);
+                startActivity(intent);
 
+            }
         }
         else if(id==R.id.nav_search){
             if(!type.equals("Admin"))
@@ -226,3 +231,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onBackPressed();
     }
 }
+
+
+
+

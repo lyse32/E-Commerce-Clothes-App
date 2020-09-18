@@ -62,6 +62,7 @@ public class ActivitySettings extends AppCompatActivity {
         closeTextBtn= findViewById(R.id.close_setting_btn);
         saveTextbtn= findViewById(R.id.update_account_settings);
         SecurityQuestionBtn= findViewById(R.id.security_question_btn);
+        storageProfilePictureRef= FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         userInfoDisplay(profileImageView, fullNameEdittxt, userPhoneEdittxt, addressEdittxt);
 
@@ -211,8 +212,9 @@ public class ActivitySettings extends AppCompatActivity {
                      ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
                      progressDialog.dismiss();
 
-                     startActivity(new Intent(ActivitySettings.this, HomeActivity.class));
+
                      Toast.makeText(ActivitySettings.this,"Profile Info Update Successfuly." , Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(ActivitySettings.this, HomeActivity.class));
                      finish();
 
                  }
