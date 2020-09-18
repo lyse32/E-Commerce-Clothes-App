@@ -52,13 +52,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onStart();
 
         PhoneNumber.setVisibility(View.GONE);
-        displayPreviousAnswers();
+
 
         if (check.equals("settings")) {
             PageTitle.setText("Set Questions");
             titleQuestion.setText("Please set the Answers for the following Security Questions");
             PhoneNumber.setVisibility(View.GONE);
             VerifyBtn.setText("Set");
+            displayPreviousAnswers();
 
             VerifyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -124,6 +124,7 @@ public class ActivitySettings extends AppCompatActivity {
             Toast.makeText(this, "Error, Try Again..",Toast.LENGTH_SHORT).show();
 
             startActivity(new Intent(ActivitySettings.this,ActivitySettings.class));
+            //refresh
             finish();
 
         }
@@ -135,8 +136,8 @@ public class ActivitySettings extends AppCompatActivity {
 
         HashMap<String , Object> userMap= new HashMap<>();
         userMap.put("name", fullNameEdittxt.getText().toString());
-        userMap.put("address", userPhoneEdittxt.getText().toString());
-        userMap.put("phone", addressEdittxt.getText().toString());
+        userMap.put("phone", userPhoneEdittxt.getText().toString());
+        userMap.put("address", addressEdittxt.getText().toString());
         ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
 
         startActivity(new Intent(ActivitySettings.this, HomeActivity.class));
@@ -204,8 +205,8 @@ public class ActivitySettings extends AppCompatActivity {
 
                      HashMap<String , Object> userMap= new HashMap<>();
                      userMap.put("name", fullNameEdittxt.getText().toString());
-                     userMap.put("address", userPhoneEdittxt.getText().toString());
-                     userMap.put("phone", addressEdittxt.getText().toString());
+                     userMap.put("phone", userPhoneEdittxt.getText().toString());
+                     userMap.put("address ", addressEdittxt.getText().toString());
                      userMap.put("image", myUrl);
                      ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
                      progressDialog.dismiss();
