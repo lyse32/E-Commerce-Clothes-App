@@ -18,7 +18,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity"
-            android:label="MainActivity">
+            android:label="i-Vastra App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
