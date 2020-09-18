@@ -44,9 +44,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
         VerifyBtn = findViewById(R.id.verify_btn);
 
 
-
-
-
         check = getIntent().getStringExtra("check");
     }
 
@@ -56,11 +53,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         PhoneNumber.setVisibility(View.GONE);
         displayPreviousAnswers();
+
         if (check.equals("settings")) {
             PageTitle.setText("Set Questions");
             titleQuestion.setText("Please set the Answers for the following Security Questions");
             PhoneNumber.setVisibility(View.GONE);
-            VerifyBtn.setText("set");
+            VerifyBtn.setText("Set");
 
             VerifyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +82,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     private void setAnswers() {
         String answer1 = question1.getText().toString().toLowerCase();
-        String answer2 = question1.getText().toString().toLowerCase();
+        String answer2 = question2.getText().toString().toLowerCase();
 
         if (answer1.equals("") && answer2.equals("")) {
             Toast.makeText(ResetPasswordActivity.this, "Please answer the questions first", Toast.LENGTH_SHORT).show();
