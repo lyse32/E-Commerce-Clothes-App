@@ -43,7 +43,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/shippment_phone"
-        android:hint="Your Phone Number"/>
+        android:hint="Your Address for delivery"/>
 
     <EditText
         android:id="@+id/shippment_city"

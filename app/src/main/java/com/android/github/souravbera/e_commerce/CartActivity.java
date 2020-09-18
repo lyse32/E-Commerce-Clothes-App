@@ -37,7 +37,7 @@ public class CartActivity extends AppCompatActivity {
     private Button NextProcessBtn;
     private TextView txtTotalAmount, msg1;
 
-    private int overTotalPrice= 0;
+    private double overTotalPrice= 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +46,14 @@ public class CartActivity extends AppCompatActivity {
 
         recyclerView= findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         NextProcessBtn = findViewById(R.id.next_process_btn);
         txtTotalAmount= findViewById(R.id.total_price);
 
-        txtTotalAmount.setText("Total Price: Rs."+String.valueOf(overTotalPrice));
+
 
         msg1= findViewById(R.id.msg1);
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
@@ -86,16 +87,18 @@ public class CartActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int i, @NonNull final Cart model)
             {
-                holder.txtProductQuatity.setText("Product Quantity: "+model.getQuantity());
-                holder.txtProductPrice.setText("Product Price: Rs."+model.getPrice());
-                holder.txtProductName.setText("Product: "+model.getProductname());
+                holder.txtProductQuatity.setText(String.format("Product Quantity: %s", model.getQuantity()));
+                holder.txtProductPrice.setText(String.format("Product Price: Rs.%s", model.getPrice()));
+                holder.txtProductName.setText(String.format("Product: %s", model.getProductname()));
 
 
 
 
 
-                int oneTypeProductTPrice= ((Integer.valueOf(model.getPrice()))) *(Integer.valueOf(model.getQuantity()));
+                double oneTypeProductTPrice= ((Double.parseDouble(model.getPrice())) *(Double.parseDouble(model.getQuantity())));
                 overTotalPrice += oneTypeProductTPrice;
+
+                txtTotalAmount.setText(String.format("Total Price: Rs.%s", String.valueOf(overTotalPrice)));
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -174,7 +177,7 @@ public class CartActivity extends AppCompatActivity {
 
                     if(shippingState.equals("shipped"))
                     {
-                        txtTotalAmount.setText("Dear "+username+ ", \n order is shipped successfully.");
+                        txtTotalAmount.setText(String.format("Dear %s, \n order is shipped successfully.", username));
                         recyclerView.setVisibility(View.GONE);
                         msg1.setText("Congratulations your final order has been placed successfully, soon you will recieve your order at your doorsteps");
                         msg1.setVisibility(View.VISIBLE);
@@ -184,7 +187,7 @@ public class CartActivity extends AppCompatActivity {
                     }
                     else if(shippingState.equals("not shipped"))
                     {
-                        txtTotalAmount.setText("Dear "+username+ ", \n order is not shipped yet.");
+                        txtTotalAmount.setText(String.format("Dear %s, \n order is not shipped yet.", username));
                         recyclerView.setVisibility(View.GONE);
                         msg1.setText("Your Order is in process, soon it will be shipped...... ");
                         msg1.setVisibility(View.VISIBLE);
