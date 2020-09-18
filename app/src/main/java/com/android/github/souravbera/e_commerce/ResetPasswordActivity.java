@@ -1,5 +1,6 @@
 package com.android.github.souravbera.e_commerce;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
@@ -77,6 +79,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
         else if(check.equals("login"))
         {
             PhoneNumber.setVisibility(View.VISIBLE);
+
+            VerifyBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    verifyUser();
+                }
+            });
         }
     }
 
@@ -127,6 +137,65 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
                     question1.setText(ans1);
                     question2.setText(ans2);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void verifyUser(){
+        final String phone= PhoneNumber.getText().toString();
+
+        final String answer1= question1.getText().toString().toLowerCase();
+        final String answer2= question1.getText().toString().toLowerCase();
+
+        DatabaseReference ref= FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Users")
+                .child(Prevalent.currentOnlineUser.getPhone());
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    String mPhone= snapshot.child("phone").getValue().toString();
+
+                    if(phone.equals(mPhone) || phone.equals(Prevalent.currentOnlineUser.getPhone())){
+
+                        if(snapshot.hasChild("Security Questions")){
+                            String ans1= snapshot.child("answer1").getValue().toString();
+                            String ans2= snapshot.child("answer2").getValue().toString();
+
+                            if(!ans1.equals(answer1)){
+                                Toast.makeText(ResetPasswordActivity.this, "You 1st Answer is wrong Please Enter correct answer!",Toast.LENGTH_SHORT).show();
+                            }
+                            else if(!ans2.equals(answer2)){
+                                Toast.makeText(ResetPasswordActivity.this, "You 2nd Answer is wrong Please Enter correct answer!",Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                AlertDialog.Builder builder= new AlertDialog.Builder(ResetPasswordActivity.this);
+                                builder.setTitle("New Password");
+                                final EditText newPassword= new EditText(ResetPasswordActivity.this);
+                                newPassword.setHint("Write New Passowrd Here");
+                                builder.setView(newPassword);
+
+                                builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if(!newPassword.getText().toString().equals("")){
+                                            ref
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
                 }
             }
 
