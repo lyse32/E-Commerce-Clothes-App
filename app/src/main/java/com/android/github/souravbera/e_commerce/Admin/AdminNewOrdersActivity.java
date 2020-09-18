@@ -1,4 +1,4 @@
-package com.android.github.souravbera.e_commerce;
+package com.android.github.souravbera.e_commerce.Admin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.github.souravbera.e_commerce.AdminUserProductsActivity;
 import com.android.github.souravbera.e_commerce.Model.AdminOrders;
+import com.android.github.souravbera.e_commerce.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
