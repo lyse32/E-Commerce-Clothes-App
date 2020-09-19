@@ -130,7 +130,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
             userName= itemView.findViewById(R.id.orders_user_name);
             userPhoneNumber= itemView.findViewById(R.id.orders_phone);
-            userTotalPrice= itemView.findViewById(R.id.orders_phone);
+            userTotalPrice= itemView.findViewById(R.id.orders_total_price);
             userDateTime= itemView.findViewById(R.id.orders_date_time);
             userShippingAddress= itemView.findViewById(R.id.orders_address_city);
             ShowOrderBtn= itemView.findViewById(R.id.show_all_products_btn);
