@@ -51,6 +51,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private static final int GalleryPic=1;
 
     private ProgressDialog loadingBar;
+    private Uri downloadUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,7 +185,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(AdminAddNewProductActivity.this, "Product Image set to Database", Toast.LENGTH_SHORT).show();
-
+                            downloadUri = task.getResult();
                             SaveProductInfoToDatabase();
                         }
                     }
@@ -201,7 +203,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         ProductMap.put("date",saveCurrentDate);
         ProductMap.put("time",saveCurrentTime);
         ProductMap.put("description",Description);
-        ProductMap.put("image",DownloadImageUrl);
+        ProductMap.put("image",downloadUri.toString());
         ProductMap.put("category",CategoryName);
         ProductMap.put("price",Price);
         ProductMap.put("productname",Productname);
