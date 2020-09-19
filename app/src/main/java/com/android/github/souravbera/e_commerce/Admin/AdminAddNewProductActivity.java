@@ -57,7 +57,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_add_new_product);
 
 
-        CategoryName = (String) getIntent().getExtras().get("category");
+        CategoryName =  getIntent().getExtras().get("category").toString();
+
         ProductImagesRef= FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductsRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -144,7 +145,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calendar.getTime());
 
         SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentDate = currentTime.format(calendar.getTime());
+        saveCurrentTime = currentTime.format(calendar.getTime());
 
         productRandomKey= saveCurrentDate+ saveCurrentTime;
 

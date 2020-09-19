@@ -38,14 +38,17 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_maintain_products);
 
-        productId= getIntent().getStringExtra("pid");
-        productsRef= FirebaseDatabase.getInstance().getReference().child("Products").child(productId);
+        productId= getIntent().getStringExtra("Pid");
+
+
 
         applyChangesBtn= findViewById(R.id.products_maintain_btn);
         name= findViewById(R.id.maintain_product_name);
         price= findViewById(R.id.maintain_product_price);
         description= findViewById(R.id.maintain_product_description);
         imageView= findViewById(R.id.maintain_product_image);
+
+        productsRef= FirebaseDatabase.getInstance().getReference().child("Products").child(productId);
 
         displaySpecificProductInfo();
 
