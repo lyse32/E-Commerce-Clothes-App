@@ -26,7 +26,7 @@
         android:layout_marginEnd="60dp"
         android:text="Find, Explore, Choose and Buy Everything Online"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:textSize="22sp"
         android:textStyle="bold|italic" />
 

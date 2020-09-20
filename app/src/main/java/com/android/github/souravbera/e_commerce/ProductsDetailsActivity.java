@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.github.souravbera.e_commerce.Model.Products;
 import com.android.github.souravbera.e_commerce.Prevalent.Prevalent;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,7 +33,7 @@ public class ProductsDetailsActivity extends AppCompatActivity {
 
 //    private FloatingActionButton addToCart;
     private Button AddToCartbtn;
-    private ImageView productImage;
+    private PhotoView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName;
     

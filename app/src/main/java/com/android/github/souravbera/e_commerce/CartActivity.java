@@ -125,6 +125,7 @@ public class CartActivity extends AppCompatActivity {
                                 {
                                     cartListRef.child("User View")
                                             .child(Prevalent.currentOnlineUser.getPhone())
+                                            .child("Products")
                                             .child(model.getPid())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
