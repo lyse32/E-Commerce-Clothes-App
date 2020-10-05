@@ -54,10 +54,10 @@ public class SearchProductActivity extends AppCompatActivity {
         super.onStart();
 
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Products");
+
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(reference.orderByChild("productname").startAt(SearchInput).endAt(SearchInput),Products.class)
-                .build();
+                        .setQuery(reference.orderByChild("productname").startAt(SearchInput).endAt(SearchInput),Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
@@ -65,8 +65,8 @@ public class SearchProductActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull final Products model)
                     {
                         holder.txtProductName.setText(model.getProductname());
-                        holder.txtProductName.setText(model.getDescription());
-                        holder.txtProductName.setText("Price = Rs."+model.getPrice());
+                        holder.txtProductDescription.setText(model.getDescription());
+                        holder.txtProductPrice.setText("Price = Rs."+model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

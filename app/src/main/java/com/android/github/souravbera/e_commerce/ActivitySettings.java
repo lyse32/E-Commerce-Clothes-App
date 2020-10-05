@@ -34,6 +34,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.security.Security;
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -198,6 +199,7 @@ public class ActivitySettings extends AppCompatActivity {
                  if(task.isSuccessful())
                  {
                      Uri downloadUri = task.getResult();
+                     assert downloadUri != null;
                      myUrl= downloadUri.toString();
 
                      DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -207,7 +209,7 @@ public class ActivitySettings extends AppCompatActivity {
                      HashMap<String , Object> userMap= new HashMap<>();
                      userMap.put("name", fullNameEdittxt.getText().toString());
                      userMap.put("phone", userPhoneEdittxt.getText().toString());
-                     userMap.put("address ", addressEdittxt.getText().toString());
+                     userMap.put("address", addressEdittxt.getText().toString());
                      userMap.put("image", myUrl);
                      ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
                      progressDialog.dismiss();
@@ -234,16 +236,16 @@ public class ActivitySettings extends AppCompatActivity {
 
         UserRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
                 if(dataSnapshot.exists())
                 {
                     if(dataSnapshot.child("image").exists())
                     {
-                        String image= dataSnapshot.child("image").getValue().toString();
-                        String name= dataSnapshot.child("name").getValue().toString();
-                        String phone= dataSnapshot.child("password").getValue().toString();
-                        String address= dataSnapshot.child("address").getValue().toString();
+                        String image= Objects.requireNonNull(dataSnapshot.child("image").getValue()).toString();
+                        String name= Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString();
+                        String phone= Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
+                        String address= Objects.requireNonNull(dataSnapshot.child("address").getValue()).toString();
 
                         Picasso.get().load(image).into(profileImageView);
                         fullNameEdittxt.setText(name);

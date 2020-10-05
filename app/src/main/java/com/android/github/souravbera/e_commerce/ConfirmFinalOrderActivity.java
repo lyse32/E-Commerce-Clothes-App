@@ -104,6 +104,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         orderMap.put("state","not shipped");
 
 
+
         ordersRef.updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
