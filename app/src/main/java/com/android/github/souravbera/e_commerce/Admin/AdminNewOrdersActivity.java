@@ -59,7 +59,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                     {
 
                         holder.userName.setText(String.format("Name: %s", model.getName()));
-                        holder.userPhoneNumber.setText(String.format("NPhone: %s", model.getPhone()));
+                        holder.userPhoneNumber.setText(String.format("Phone Number: %s", model.getPhone()));
                         holder.userTotalPrice.setText(String.format("Total Amount: %s", model.getTotalAmount()));
                         holder.userDateTime.setText(String.format("OrderedAt: %s  %s", model.getDate(), model.getTime()));
                         holder.userShippingAddress.setText(String.format("ShippingAddress: %s  %s", model.getAddress(), model.getCity()));
