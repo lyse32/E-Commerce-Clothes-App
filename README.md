@@ -10,9 +10,10 @@ attires, grooming, etc.
 ### Technologies Used:
 - Android Development
 - Java
-- Flutter
-- Dart
-- Firebase
+- Authentication
+- Firebase Storage
+- Firebase Database
+- Firebase push Notification
 
 ### Installation & Setup:
 1. First Clone this repo using the command **git clone [https://github.com/nano-research-labs/i-Vastra-App.git](https://github.com/nano-research-labs/i-Vastra-App.git)**.
