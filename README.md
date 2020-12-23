@@ -15,7 +15,7 @@ attires, grooming, etc.
 - Firebase
 
 ### Installation & Setup:
-1. First Clone this repo using the command **git clone ![https://github.com/nano-research-labs/i-Vastra-App.git](https://github.com/nano-research-labs/i-Vastra-App.git)**.
+1. First Clone this repo using the command **git clone [https://github.com/nano-research-labs/i-Vastra-App.git](https://github.com/nano-research-labs/i-Vastra-App.git)**.
 2. Then into the cloning directory **cd i-Vastra-App**.
 3. Open your Android Studio IDE into your cloning directory.
 4. Run Build Gradle.
